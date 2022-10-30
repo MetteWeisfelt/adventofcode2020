@@ -55,7 +55,7 @@ public class DayTwo {
                     valid++;
                 }
             }
-            
+
         } catch (FileNotFoundException e) {
             System.out.println(">>> error: file not found");
             e.printStackTrace();
@@ -68,6 +68,59 @@ public class DayTwo {
     }
 
     public static void challenge2(){
-        
+        File file;
+        BufferedReader br;
+        String line;
+        int valid = 0;
+
+        try {
+            // read input from input file
+            file = new File("C:\\Users\\mcwei\\Documents\\Personal\\AdventOfCode\\adventofcode2020\\input\\d2challenge1.txt");
+            br = new BufferedReader(new FileReader(file));
+
+            while((line = br.readLine()) != null){
+                int count = 0;
+
+                // split password rules into parts
+                String[] parts = line.split(" ");
+
+                // parse password number rule
+                String[] minmax = parts[0].split("-");
+
+                // position - 1 because starts counting at index 1 not 0
+                int positionOne = Integer.parseInt(minmax[0]) - 1;
+                int positionTwo = Integer.parseInt(minmax[1]) - 1;
+
+                // parse character rule
+                char rulechar = parts[1].charAt(0);
+
+                // parse password
+                String password = parts[2];
+
+                // calculate valid indexes
+                for(int i = 0; i < password.length(); i++){
+                    if(i == positionOne || i == positionTwo){
+                        if(password.charAt(i) == rulechar){
+                            count++;
+                        }
+                    }
+                }
+
+                // calculate valid passwords
+                if(count == 1){
+                    valid++;
+                }
+            }
+            
+        } catch (FileNotFoundException e) {
+            System.out.println(">>> error: file not found");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println(">>> error: io exception");
+            e.printStackTrace();
+        }
+
+        // print answer
+        System.out.println(">>> output day 2 challenge 2: " + valid);
     }
 }
