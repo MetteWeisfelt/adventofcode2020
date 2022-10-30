@@ -80,32 +80,6 @@ class DayOne {
                 list.add(Integer.parseInt(line));
             }
 
-            for(int i = 0; i < list.size(); i++){
-                // get number to look for to get targetSum in total
-                int targetNumber = targetSum - list.get(i);
-
-                // if set contains that number
-                if(set.contains(targetNumber)) {
-                    // print multiple
-                    System.out.println("output day 1 challenge 1: " + (targetNumber * list.get(i)));
-                    break;
-                }
-            }
-            
-            // possible other way without the use of an additional set put into memory
-            for(int j = 0; j < list.size(); j++){
-                int targetNum = targetSum - list.get(j);
-
-                // go through list
-                for(int k = 0; k < list.size(); k++){
-                    // if targetnumber found, print multiple
-                    if(list.get(k) == targetNum) {
-                        System.out.println("output day 1 challenge 1 second way: " + targetNum * list.get(j));
-                        break;
-                    }
-                }
-            }
-
         } catch (FileNotFoundException e) {
             System.out.println(">>> error: file not found");
             e.printStackTrace();
@@ -113,6 +87,31 @@ class DayOne {
             System.out.println(">>> error: io exception");
             e.printStackTrace();
         }
-    }
 
+        for(int i = 0; i < list.size(); i++){
+            // get number to look for to get targetSum in total
+            int targetNumber = targetSum - list.get(i);
+
+            // if set contains that number
+            if(set.contains(targetNumber)) {
+                // print multiple
+                System.out.println("output day 1 challenge 1: " + (targetNumber * list.get(i)));
+                break;
+            }
+        }
+        
+        // possible other way without the use of an additional set put into memory
+        for(int j = 0; j < list.size(); j++){
+            int targetNum = targetSum - list.get(j);
+
+            // go through list
+            for(int k = 0; k < list.size(); k++){
+                // if targetnumber found, print multiple
+                if(list.get(k) == targetNum) {
+                    System.out.println("output day 1 challenge 1 second way: " + targetNum * list.get(j));
+                    break;
+                }
+            }
+        }
+    }
 }
